@@ -1,8 +1,14 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+app.use(cors());
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+app.use(bodyParser.json({limit: '50mb'}))
+
 const mongoose = require("mongoose");
 const port = 8080;
-const productRoutes = require("../backend/routes/product.route");
 
 const connectionString = "mongodb+srv://demoUser:x2umTAa29blMQk0R@cluster0.2erxl.mongodb.net/testdb?retryWrites=true&w=majority";
 
@@ -18,12 +24,9 @@ mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: 
     }
 )
 
-app.get('/', (req, res) => {
-    res.send("api response");
-});
-
-app.use('/products', productRoutes);
+//Routers
+require('./routes/product.route')(app)
 
 app.listen(port, () => {
-    console.log("server is ON");
+    console.log(`Listening on port: ${port}`);
 });

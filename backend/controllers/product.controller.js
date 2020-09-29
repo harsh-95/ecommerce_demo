@@ -13,7 +13,7 @@ exports.getProducts = (req, res, next) => {
 }
 
 exports.addProduct = (req, res, next) => {
-
+    
     const newProduct = new Product({
         productId: req.body.productId,
         productName: req.body.productName,
@@ -21,7 +21,7 @@ exports.addProduct = (req, res, next) => {
         productCategory: req.body.productCategory,
         productBrand: req.body.productBrand,
         productAttributes: req.body.productAttributes
-    });
+    }); 
 
     newProduct.save().then(
         () => {
