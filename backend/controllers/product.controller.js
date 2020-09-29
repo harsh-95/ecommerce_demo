@@ -13,26 +13,34 @@ exports.getProducts = (req, res, next) => {
 }
 
 exports.addProduct = (req, res, next) => {
+
+    const {
+        productId,
+        productName,
+        productPrice,
+        productImgUrl,
+        productCategory,
+        productBrand,
+        productAttributes
+    } = req.body;
     
     const newProduct = new Product({
-        productId: req.body.productId,
-        productName: req.body.productName,
-        productPrice: req.body.productPrice,
-        productCategory: req.body.productCategory,
-        productBrand: req.body.productBrand,
-        productAttributes: req.body.productAttributes
+        productId: productId,
+        productName: productName,
+        productPrice: productPrice,
+        productImgUrl: productImgUrl,
+        productCategory: productCategory,
+        productBrand: productBrand,
+        productAttributes: productAttributes
     }); 
 
-    newProduct.save().then(
-        () => {
+    newProduct.save((err,data) => {
+            if (err) return console.error(err)
             res.status(200).json({
                 message: "Product added"
             })
         }
-    ).catch(
-        (error) => {
-            error: error
-        }
     )
 }
 
+ 
