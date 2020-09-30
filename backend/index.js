@@ -45,10 +45,9 @@ conn.on('open', function () {
     });
 });
 
-
 //Routers
 require('./routes/product.route')(app)
  
 app.listen(port, () => {
-    console.log("server is ON");
-}); 
+    console.log(`Listening on port: ${port}`);
+});
