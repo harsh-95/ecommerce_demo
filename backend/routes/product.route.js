@@ -6,4 +6,5 @@ module.exports = (app) => {
 
     app.post('/addProducts', productController.addProduct );
 
+    app.put('/updateProduct', productController.updateProduct )
 }
