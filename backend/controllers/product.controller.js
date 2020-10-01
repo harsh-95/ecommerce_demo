@@ -46,12 +46,13 @@ exports.addProduct = (req, res, next) => {
 exports.updateProduct = (req, res, next) => {
     const updatedProduct = req.body;
 
-    Product.update({_id: updatedProduct._id}, updatedProduct, (err, raw) => {
+    Product.updateOne({_id: updatedProduct._id, productId: updatedProduct.productId}, updatedProduct, (err, raw) => {
         if (err) return console.error(err)
         res.status(200).json({
             raw: raw,
         })
     })
+    
 }
 
  
