@@ -20,10 +20,10 @@ module.exports = (app) => {
 
     })
 
-    app.delete('/:postId',async(req,res)=>{
+    app.delete('/:productId',async(req,res)=>{
         try{
-            const removedPost= await Product.remove({_id:req.params.postId})
-            res.json(removedPost)
+            const removedProduct= await Product.remove({_id:req.params.productId})
+            res.json(removedProduct)
         }catch(err){
             res.json({message:err})
         }
