@@ -6,11 +6,11 @@ module.exports = (app) => {
 
     app.get('/getAllProducts', productController.getProducts );
 
-    app.post('/addProducts', productController.addProduct );
+    app.post('/addProducts', productController.validate(), productController.addProduct );
 
     app.put('/updateProduct', productController.updateProduct )
 
-    app.get('/:id', productController.getPerticularProduct )
+    app.get('/:id', productController.getParticularProduct )
 
     app.delete('/:productId', productController.deleteProduct )
 
