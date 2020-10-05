@@ -6,21 +6,20 @@ const productSchema = mongoose.Schema({
     productName: { type: String, required: true },
     productImgUrl: { type: String, required: true },
     productPrice: {
-        type: [{
+        type: {
             retail: { type: Number },
             sale: { type: Number }
-        }]
+        }
     },
     productCategory: { type: String, required: true },
     productBrand: { type: String, required: true },
     productAttributes: {
-        type: [{
+        type: {
             color: { type: String },
             gender: { type: String },
             size: { type: String },
-            type: { type: String },
             material: { type: String },
-        }]
+        }
     }
     
 })

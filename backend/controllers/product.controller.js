@@ -17,21 +17,33 @@ exports.addProduct = (req, res, next) => {
     const {
         productId,
         productName,
-        productPrice,
-        productImgUrl,
-        productCategory,
-        productBrand,
-        productAttributes
+        retailPrice,
+        salePrice,
+        imgUrl,
+        category,
+        brand,
+        color,
+        gender,
+        size,
+        material
     } = req.body;
     
     const newProduct = new Product({
         productId: productId,
         productName: productName,
-        productPrice: productPrice,
-        productImgUrl: productImgUrl,
-        productCategory: productCategory,
-        productBrand: productBrand,
-        productAttributes: productAttributes
+        productPrice: {
+            retail: retailPrice,
+            sale: salePrice
+        },
+        productImgUrl: imgUrl,
+        productCategory: category,
+        productBrand: brand,
+        productAttributes: {
+            color: color,
+            gender: gender,
+            size: size,
+            material: material,
+        }
     }); 
 
     newProduct.save((err,data) => {
