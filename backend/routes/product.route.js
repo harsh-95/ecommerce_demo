@@ -10,22 +10,8 @@ module.exports = (app) => {
 
     app.put('/updateProduct', productController.updateProduct )
 
-    app.get('/:id',async(req,res)=>{
-        try{
-        const products= await Product.findById(req.params.id)
-        res.json(products)
-        }catch (err){
-            res.send("error" + err)
-        }
+    app.get('/:id', productController.getPerticularProduct )
 
-    })
+    app.delete('/:productId', productController.deleteProduct )
 
-    app.delete('/:productId',async(req,res)=>{
-        try{
-            const removedProduct= await Product.remove({_id:req.params.productId})
-            res.json(removedProduct)
-        }catch(err){
-            res.json({message:err})
-        }
-    })
 }

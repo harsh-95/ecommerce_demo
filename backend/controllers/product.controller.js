@@ -67,4 +67,23 @@ exports.updateProduct = (req, res, next) => {
     
 }
 
+
+exports.getPerticularProduct = async (req, res, next) => {
+    try{
+        const products= await Product.findById(req.params.id)
+        res.status(200).json(products)
+    }catch (err){
+        res.send("error" + err)
+    }
+}
+
+exports.deleteProduct = async (req, res, next) => {
+    try{
+        const removedProduct= await Product.deleteOne({_id:req.params.productId})
+        res.status(200).json(removedProduct)
+    }catch(err){
+        res.json({message:err})
+    }
+}
+
  
