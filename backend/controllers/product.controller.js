@@ -64,9 +64,40 @@ exports.addProduct = (req, res, next) => {
 }
 
 exports.updateProduct = (req, res, next) => {
-    const updatedProduct = req.body;
 
-    Product.updateOne({ _id: updatedProduct._id, productId: updatedProduct.productId }, updatedProduct, (err, raw) => {
+    const {
+        productId,
+        productName,
+        retailPrice,
+        salePrice,
+        imgUrl,
+        category,
+        brand,
+        color,
+        gender,
+        size,
+        material
+    } = req.body;
+
+    const updatedProduct = {
+        productId: productId,
+        productName: productName,
+        productPrice: {
+            retail: retailPrice,
+            sale: salePrice
+        },
+        productImgUrl: imgUrl,
+        productCategory: category,
+        productBrand: brand,
+        productAttributes: {
+            color: color,
+            gender: gender,
+            size: size,
+            material: material,
+        }
+    }
+
+    Product.updateOne({ _id: req.params.id }, updatedProduct, (err, raw) => {
         if (err) return console.error(err)
         res.status(200).json({
             raw: raw,
@@ -76,7 +107,7 @@ exports.updateProduct = (req, res, next) => {
 }
 
 
-exports.getParticularProduct = async (req, res, next) => {
+exports.getProduct = async (req, res, next) => {
     try {
         const products = await Product.findById(req.params.id)
         res.status(200).json(products)
@@ -87,7 +118,7 @@ exports.getParticularProduct = async (req, res, next) => {
 
 exports.deleteProduct = async (req, res, next) => {
     try {
-        const removedProduct = await Product.deleteOne({ _id: req.params.productId })
+        const removedProduct = await Product.deleteOne({ _id: req.params.id })
         res.status(200).json(removedProduct)
     } catch (err) {
         res.json({ message: err })

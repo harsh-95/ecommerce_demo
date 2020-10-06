@@ -4,14 +4,14 @@ module.exports = (app) => {
 
     const productController = require("../controllers/product.controller");
 
-    app.get('/getAllProducts', productController.getProducts );
+    app.get('/products', productController.getProducts );
 
-    app.post('/addProducts', productController.validate(), productController.addProduct );
+    app.post('/products', productController.validate(), productController.addProduct );
 
-    app.put('/updateProduct', productController.updateProduct )
+    app.put('/products/:id', productController.updateProduct )
 
-    app.get('/:id', productController.getParticularProduct )
+    app.get('/products/:id', productController.getProduct )
 
-    app.delete('/:productId', productController.deleteProduct )
+    app.delete('/products/:id', productController.deleteProduct )
 
 }
