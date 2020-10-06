@@ -25,8 +25,6 @@ exports.addProduct = (req, res, next) => {
     const {
         productId,
         productName,
-        retailPrice,
-        salePrice,
         imgUrl,
         category,
         brand,
@@ -35,6 +33,9 @@ exports.addProduct = (req, res, next) => {
         size,
         material
     } = req.body;
+
+    var retailPrice = Math.abs(req.body.retailPrice);
+    var salePrice = Math.abs(req.body.salePrice);
 
     const newProduct = new Product({
         productId: productId,
