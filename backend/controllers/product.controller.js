@@ -130,7 +130,6 @@ exports.deleteProduct = async (req, res, next) => {
 exports.validate = () => {
 
     return [
-        body('productId', 'Product Id is required').notEmpty(),
         body('productName', 'Product Name is required').notEmpty(),
         body('retailPrice', 'Retail Price is required').notEmpty().isNumeric(),
         body('salePrice', 'Sale Price is required').notEmpty().isNumeric(),

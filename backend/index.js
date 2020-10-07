@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const autoIncrement = require("mongoose-auto-increment");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
@@ -23,6 +24,9 @@ mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: 
         console.error(err);
     }
 )
+
+//for using autoIncrement 
+autoIncrement.initialize(mongoose.connection);
 
 //Routers
 require('./routes/product.route')(app)
