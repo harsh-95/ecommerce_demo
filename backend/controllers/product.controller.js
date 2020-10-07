@@ -58,7 +58,8 @@ exports.addProduct = (req, res, next) => {
     newProduct.save((err, data) => {
         if (err) return console.error(err)
         res.status(200).json({
-            message: "Product added"
+            message: "Product has been added",
+            productId: data._id
         })
     }
     )
