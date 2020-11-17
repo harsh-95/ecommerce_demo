@@ -11,7 +11,7 @@ app.use(bodyParser.json({limit: '50mb'}))
 const mongoose = require("mongoose");
 const port = 8080;
 
-const connectionString = "mongodb+srv://demoUser:x2umTAa29blMQk0R@cluster0.2erxl.mongodb.net/testdb?retryWrites=true&w=majority";
+const connectionString = "";
 
 
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true }).then(
